@@ -536,9 +536,92 @@ public class Test {
 ![image](https://user-images.githubusercontent.com/39422788/221901859-3769f882-0d0e-4ae3-85a2-00b657b6deb6.png)
 
 
+- **JComboBox***
+```JAVA
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		JComboBox<String> comboBox;
+		JButton button;
+		
+		String arr[] = {"C" , "C++" , "Java" , "Go" };
+		
+		JFrame frame = new JFrame("JCombobox Kullanımı");
+		
+		comboBox = new JComboBox<>(arr);
+		comboBox.setBounds(100 , 100 , 100 , 30);
+		
+		button = new JButton("Gönder");
+		button.setBounds(100 , 150 , 100 , 30);
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Seçili Dil : " + comboBox.getSelectedItem());
+				System.out.println("Seçili Dil : " + comboBox.getItemAt(comboBox.getSelectedIndex()));
+				
+			}
+		});
+		
+		
+		frame.add(button);
+		frame.add(comboBox);
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+	}
+
+}
+
+```
+![image](https://user-images.githubusercontent.com/39422788/221961098-825cde4d-4d83-48ea-b678-2fcc97668bd2.png)
 
 
 
+- **JTable**
+```JAVA
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+public class Test {
+
+	public static void main(String[] args) {	
+		JTable table;
+		JScrollPane scrollpane;
+		
+		String[][] data = {{"1" , "FEN" , "85"} , {"2" , "MAT" , "95"}};
+		String[] column = {"ID" , "DERS" , "NOTE"};
+		
+		
+		JFrame frame = new JFrame("JTable Kullanımı");
+		
+		table = new JTable(data , column);
+		table.setBounds(50 , 50 , 300 , 100);
+		
+		scrollpane = new JScrollPane(table);
+		
+		
+	
+		frame.add(scrollpane);
+		frame.setSize(400 , 400);
+		frame.setVisible(true);
+	}
+
+}
+
+```
+
+![image](https://user-images.githubusercontent.com/39422788/221967493-7cfdd1b0-dd06-40f7-add5-2aabda7019b4.png)
 
 
 
