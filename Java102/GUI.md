@@ -623,5 +623,84 @@ public class Test {
 
 ![image](https://user-images.githubusercontent.com/39422788/221967493-7cfdd1b0-dd06-40f7-add5-2aabda7019b4.png)
 
+- **JLİST** iki farklı Jlist oluşturulmuş list1 de sadece tek seçim kodlanmış , list2 de bütün seçenekleri seçme ihtimali kodlanmıştır.
+```JAVA
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
+import javax.swing.DefaultListSelectionModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JList;
+
+public class Test {
+
+	public static void main(String[] args) {
+		DefaultListModel<String> dListModel1;
+		DefaultListModel<String> dListModel2;
+		JButton  button;
+		JList<String> list1;
+		JList<String> list2;
+		
+		JFrame frame = new JFrame("JList");
+		
+		dListModel1 = new DefaultListModel<>();
+		dListModel1.addElement("Java");
+		dListModel1.addElement("C++");
+		dListModel1.addElement("PHP");
+		dListModel1.addElement("Go");
+		
+		list1 = new JList<>(dListModel1);
+		list1.setBounds(50 , 50 , 100 , 100);
+		list1.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION); // Sadece bir seçenek eklemek için
+		
+		dListModel2 = new DefaultListModel<>();
+		dListModel2.addElement("BootStrap");
+		dListModel2.addElement("Swing");
+		dListModel2.addElement("Spring");
+		dListModel2.addElement("VueJs");
+		
+		list2 = new JList<String>(dListModel2);
+		list2.setBounds(50 , 200 , 100 , 100);
+		
+		button = new JButton("Gönder");
+		button.setBounds(155 , 158 , 100 , 30);
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String txt = "";
+				if(list1.getSelectedIndex() != -1) { // Seçili ise
+					txt = "Seçili Dil " + list1.getSelectedValue() + "--->";
+				}
+				
+				if(list2.getSelectedIndex() != -1) {
+					txt += " Alt Teknoloji : " ;
+					
+					for (Object object : list2.getSelectedValuesList()) { //Çoklu seçimde list dönecektir
+						txt += object + " " ;
+					}
+					
+				}
+				
+				
+				System.out.println(txt);
+			}
+		});
+		
+		frame.add(button);
+		frame.add(list2);
+		frame.add(list1);
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+		
+
+	}
+
+}
+
+```
+![image](https://user-images.githubusercontent.com/39422788/221979471-091a9187-c9fa-4703-b2d2-eabf3bba42e9.png)
 
