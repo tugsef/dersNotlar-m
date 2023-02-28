@@ -469,9 +469,71 @@ public class TestAddItemListener {
 ```
 ![image](https://user-images.githubusercontent.com/39422788/221879682-03df68be-1fc9-4d6b-aa38-cd1d4996d3e6.png)        ![image](https://user-images.githubusercontent.com/39422788/221879866-b429192b-d7f4-49b6-8ce5-048be53485e7.png)
 
+- **JRadioButton**
+ ```JAVA
+ import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JRadioButton;
+
+public class Test {
+	//buttonGroup.getSelection().getActionCommand() seçilenin bana kısa değerini getir.
+	public static void main(String[] args) {
+		
+		JFrame frame = new JFrame();
+		JRadioButton radioButton1 , radioButton2 , radioButton3;
+		JButton button;
+		ButtonGroup buttonGroup; //RadioButtonlar gruplanması gerekir yosa hepsi seçilebilir olur.
+		
+		radioButton1 = new JRadioButton("Kadın");
+		radioButton1.setBounds(100 , 100 , 100 , 30 );
+		radioButton1.setActionCommand("K");
+		
+		
+		radioButton2 = new JRadioButton("Erkek");
+		radioButton2.setBounds(100 , 135 , 100 , 30);
+		radioButton2.setActionCommand("E");
+		
+		radioButton3 = new JRadioButton("İstemiyorum" , true); // ikinci parametre true seçili getirir.
+		radioButton3.setBounds(100 , 170 , 100 , 30);
+		radioButton3.setActionCommand("N");
+		
+		buttonGroup = new ButtonGroup();
+		buttonGroup.add(radioButton1);
+		buttonGroup.add(radioButton2);
+		buttonGroup.add(radioButton3);
+		
+		button = new JButton("Gönder");
+		button.setBounds(100 , 205 , 100 , 30);
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(buttonGroup.getSelection().getActionCommand());
+				
+			}
+		});
+		
+		
+		frame.add(button);
+		frame.add(radioButton3);
+		frame.add(radioButton1);
+		frame.add(radioButton2);
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+
+	}
+
+}
+
+ ```
 
 
-
+![image](https://user-images.githubusercontent.com/39422788/221901859-3769f882-0d0e-4ae3-85a2-00b657b6deb6.png)
 
 
 
