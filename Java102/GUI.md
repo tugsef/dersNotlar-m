@@ -342,7 +342,132 @@ public class Test {
 
 
 
+- **JCheckBox** seçim kutusu
+ 
+ 
+ ```JAVA
+ import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		JFrame frame = new JFrame("JCheckBox Kullanımı");
+		
+		JCheckBox checkBox1 , checkBox2;
+		
+		checkBox1 = new JCheckBox("Evet");
+		checkBox1.setBounds(100 , 100 , 150 , 30);
+		
+		checkBox2 = new JCheckBox("Hayır");
+		checkBox2.setBounds(100, 140, 150, 30);
+		
+		JButton button = new JButton("Kontrol Et");
+		button.setBounds(100 , 180 , 100 , 30);
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(checkBox1.isSelected()) {
+					System.out.println("Evet Seçildi.");
+					
+				}
+				
+				if(checkBox2.isSelected()) {
+					System.out.println("Hayır Seçildi.");
+				}
+				
+			}
+		});
+		
+		
+		
+		frame.add(button);
+		frame.add(checkBox2);
+		frame.add(checkBox1);
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+
+	}
+
+}
+
+ ```
+
+![image](https://user-images.githubusercontent.com/39422788/221879307-bec102ae-6ac4-4bea-87e5-d732ee443db1.png)
+
+
+```JAVA
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class TestAddItemListener {
+
+	public static void main(String[] args) {
+		// addItemListener tıklandı mı tıklanmadı mı
+		
+		JFrame frame = new JFrame("JCheckBox Kullanımı");
+		
+		JCheckBox checkBox1 , checkBox2;
+		JLabel label;
+		
+		checkBox1 = new JCheckBox("C++");
+		checkBox1.setBounds(100 , 100 , 150 , 30);
+		checkBox1.setName("C++");
+		
+		checkBox2 = new JCheckBox("Java");
+		checkBox2.setBounds(100, 140, 150, 30);
+		checkBox2.setName("Java");
+		
+		label = new JLabel("Seçim Yapınız ...");
+		label.setBounds(75 , 65 , 150 , 30);
+		
+		checkBox1.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				label.setText(checkBox1.getName() + (e.getStateChange() == 1 ? "Seçildi" : "Seçilmedi") );
+				
+			}
+		});
+		
+		checkBox2.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				label.setText(checkBox2.getName() + (e.getStateChange() == 1 ? "Seçildi" : "Seçilmedi"));
+				
+			}
+		});
+		
+		frame.add(label);
+		frame.add(checkBox1);
+		frame.add(checkBox2);
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+
+	}
+
+	}
+
+
+
+```
+![image](https://user-images.githubusercontent.com/39422788/221879682-03df68be-1fc9-4d6b-aa38-cd1d4996d3e6.png)        ![image](https://user-images.githubusercontent.com/39422788/221879866-b429192b-d7f4-49b6-8ce5-048be53485e7.png)
 
 
 
