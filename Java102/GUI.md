@@ -940,7 +940,7 @@ public class Test {
 
 ![2023-03-01 (2)](https://user-images.githubusercontent.com/39422788/222116325-9eb732f5-1fb3-4cd9-b38d-9b037161f714.png)   ![image](https://user-images.githubusercontent.com/39422788/222116510-80dfda8b-cf13-482d-9e52-16861b60cff9.png)
 
-- **JprogreeBar**
+- **JProgressBar**
 ```JAVA
 ![Uploading image.png…]()
 import java.awt.Frame;
