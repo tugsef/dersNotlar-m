@@ -942,7 +942,7 @@ public class Test {
 
 - **JProgressBar**
 ```JAVA
-![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/39422788/222128042-b1c714b2-e437-419c-bad5-e0c49fe34fb4.png)
 import java.awt.Frame;
 
 import javax.swing.JFrame;
@@ -984,4 +984,197 @@ public class Test {
 
 ```
 ![image](https://user-images.githubusercontent.com/39422788/222122553-3b52ee0e-6ef9-40d5-b9e6-0a469d2abb0b.png)
+
+- **JTabbedPane**
+```JAVA
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		JPanel panel1;
+		JPanel panel2;
+		JPanel panel3;
+		JLabel label1;
+		JLabel label2;
+		JLabel label3;
+		
+		JTabbedPane tabbedPane;
+		
+		JFrame frame = new JFrame("JTabbedPane Kullanımı");
+		
+		label1 = new JLabel("İlk Panel");
+		panel1 = new JPanel();
+		panel1.add(label1);
+		
+		label2 = new JLabel("İkinci Panel");
+		panel2 = new JPanel();
+		panel2.add(label2);
+		
+		label3 = new JLabel("Üçüncü Panel");
+		panel3 = new JPanel();
+		panel3.add(label3);
+		
+		tabbedPane = new JTabbedPane();
+		tabbedPane.setBounds(50 , 50 , 200 , 200);
+		tabbedPane.add("Birinci" , panel1);
+		tabbedPane.add("İkinci" , panel2);
+		tabbedPane.add("Üçüncü" , panel3);
+		
+		frame.add(tabbedPane);
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+
+	}
+
+}
+
+```
+![image](https://user-images.githubusercontent.com/39422788/222139658-c6d16c2c-025e-4603-9bf2-3685678cf29b.png)
+
+- **Layout** paneli 5 parçaya döner...
+```JAVA
+import java.awt.BorderLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Test {
+
+	public static void main(String[] args) {
+	//Birleşenleri 5 ayırır.
+		JButton button1;
+		JButton button2;
+		JButton button3;
+		JButton button4;
+		JButton button5;
+		
+		JPanel panel;
+		JFrame frame;
+		
+		frame = new JFrame("Layout");
+		
+		panel = new JPanel(new BorderLayout());
+		panel.add(button1 = new JButton("KUZEY") , BorderLayout.NORTH);
+		panel.add(button2 = new JButton("Güney") , BorderLayout.SOUTH);
+		panel.add(button3 = new JButton("DOĞU") , BorderLayout.EAST);
+		panel.add(button4 = new JButton("BATI") , BorderLayout.WEST);
+		panel.add(button5 = new JButton("MERKEZ") , BorderLayout.CENTER);
+		
+		frame.add(panel);
+		frame.setSize(400 , 400);
+		frame.setVisible(true);
+		
+
+	}
+
+}
+
+```
+![image](https://user-images.githubusercontent.com/39422788/222140081-122c4123-281a-437d-b6f3-8466e4d5606c.png)
+
+- **GridLayout** Webde de kullanılmakta responsive(mobil) yapılarda kullanılan bir yapı  grid(ızgara) istediğim gibi paneli böyer (3 , 2 ) bir yapı oluşturalum
+
+```JAVA
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class GridLayaut {
+
+	public static void main(String[] args) {
+		JButton button1;
+		JButton button2;
+		JButton button3;
+		JButton button4;
+		JButton button5;
+		JButton button6;
+		
+		JPanel panel;
+		JFrame frame;
+		
+		frame = new JFrame("Layout");
+		
+		panel = new JPanel();
+		panel.setLayout(new GridLayout(3 , 2));
+		panel.add(button1 = new JButton("B1"));
+		panel.add(button2 = new JButton("B2") );
+		panel.add(button3 = new JButton("B3") );
+		panel.add(button4 = new JButton("B4")  );
+		panel.add(button5 = new JButton("B5") );
+		panel.add(button6 = new JButton("B6")); 
+		
+		
+		frame.add(panel);
+		frame.setSize(400 , 400);
+		//frame.pack();
+		frame.setVisible(true);
+
+	}
+
+	}
+
+
+
+```
+![image](https://user-images.githubusercontent.com/39422788/222142508-944697e9-1638-4a7b-838d-a3e0c6544bca.png)
+
+
+- **flowLayout** aldığı birleşeni yanyana yazar paneli ortalar.soldan sağa yazar birleşenlerin büyüklüğü birleşenin aldığı öğe belirler
+
+```JAVA
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class flowLayout {
+
+	public static void main(String[] args) {
+		JButton button1;
+		JButton button2;
+		JButton button3;
+		JButton button4;
+		JButton button5;
+		JButton button6;
+		
+		JPanel panel;
+		JFrame frame;
+		
+		frame = new JFrame("Layout");
+		
+		panel = new JPanel();
+		panel.setLayout(new FlowLayout());
+		panel.add(button1 = new JButton("B1"));
+		panel.add(button2 = new JButton("B2") );
+		panel.add(button3 = new JButton("B3") );
+		panel.add(button4 = new JButton("B4")  );
+		panel.add(button5 = new JButton("B5") );
+		panel.add(button6 = new JButton("B6")); 
+		
+		
+		frame.add(panel);
+		frame.setSize(400 , 400);
+		//frame.pack();
+		frame.setVisible(true);
+
+	}
+
+}
+
+
+````
+
+![image](https://user-images.githubusercontent.com/39422788/222144102-f672baf0-830f-41c1-8f19-eb791172cd9c.png)
 
