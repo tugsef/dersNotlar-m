@@ -940,3 +940,48 @@ public class Test {
 
 ![2023-03-01 (2)](https://user-images.githubusercontent.com/39422788/222116325-9eb732f5-1fb3-4cd9-b38d-9b037161f714.png)   ![image](https://user-images.githubusercontent.com/39422788/222116510-80dfda8b-cf13-482d-9e52-16861b60cff9.png)
 
+- **JprogreeBar**
+```JAVA
+![Uploading image.png…]()
+import java.awt.Frame;
+
+import javax.swing.JFrame;
+import javax.swing.JProgressBar;
+
+public class Test {
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("JProgressBar");
+		
+		JProgressBar progressBar = new JProgressBar(0 , 200); //başlangıç ve bitiş süresi
+		progressBar.setBounds(100 , 100 , 200 , 50);
+		progressBar.setValue(0);
+		progressBar.setStringPainted(true); // daha güzel gösterir.
+		
+		
+		frame.add(progressBar);
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+		
+		int i= 0;
+		while (i <= 2000) {
+			progressBar.setValue(i);
+			
+			i+=20;
+			try {
+				Thread.sleep(150);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
+	}
+
+}
+
+```
+![image](https://user-images.githubusercontent.com/39422788/222122553-3b52ee0e-6ef9-40d5-b9e6-0a469d2abb0b.png)
+
