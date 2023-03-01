@@ -758,3 +758,52 @@ public class Test {
 ![image](https://user-images.githubusercontent.com/39422788/222056405-3a759ac5-8cf6-456f-9b97-26af64f653fb.png)   ![image](https://user-images.githubusercontent.com/39422788/222056704-952e714e-5a5e-4042-9a07-2871f2829b02.png)
 
 
+- **JScrollBar**
+```JAVA
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollBar;
+
+public class Test {
+
+	public static void main(String[] args) {
+		//JScroollBar
+		//scrollBar = new JScrollBar(ytaydikey , başlamakordinst , maaxsınırlama , min değeri  , maxdeğeri);
+		
+		JScrollBar scrollBar;
+		JFrame frame;
+		JLabel label;
+		
+		frame = new JFrame("JScrollBsr Kullanımı");
+		
+		label = new JLabel("Hoşgeldiniz...");
+		label.setBounds(50 , 50 , 150 , 30);
+		
+		scrollBar = new JScrollBar(JScrollBar.VERTICAL , 50 , 10 , 10  , 150);
+		scrollBar.setBounds(50, 100, 50, 100);
+		scrollBar.addAdjustmentListener(new AdjustmentListener() {
+			
+			@Override
+			public void adjustmentValueChanged(AdjustmentEvent e) {
+				label.setText("ScollBar değeri : " + scrollBar.getValue());
+				
+			}
+		});
+		
+		frame.add(label);
+		frame.add(scrollBar);
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+		
+
+	}
+
+}
+
+```
+
+![image](https://user-images.githubusercontent.com/39422788/222060694-9c26caaa-c7ae-43f1-a4fd-285519b2f932.png)
