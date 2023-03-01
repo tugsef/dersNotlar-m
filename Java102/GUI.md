@@ -30,7 +30,30 @@ public class JFareandPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true); // gürünürlük
 	}
-	
+	# **JOptionPane** çoğu programda karşılaştığımız hata aldığımızda evet hayırda karşımıza çıkar. statictir nesne üretmeye gerek kalmaz
+	import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		JFrame frame = new JFrame("JOptionalPane Kullanımı");
+		
+		JOptionPane.showMessageDialog(frame, "Dikkat" , "Hoşgeldin" , JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showInputDialog(frame , "Doğrulama Kodu Giriniz ...");
+		
+		String string = JOptionPane.showInputDialog(frame , "Evet Yazarak Onayla");
+		System.out.println(string);
+		
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+
+	}
+
+}
+
 	
 }
 ```
@@ -703,4 +726,35 @@ public class Test {
 
 ```
 ![image](https://user-images.githubusercontent.com/39422788/221979471-091a9187-c9fa-4703-b2d2-eabf3bba42e9.png)
+
+
+- **JOptionPane** messaj diyololsrı , veri alma diyoloğu vb. statictir.
+```JAVA
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		JFrame frame = new JFrame("JOptionalPane Kullanımı");
+		
+		JOptionPane.showMessageDialog(frame, "Dikkat" , "Hoşgeldin" , JOptionPane.WARNING_MESSAGE);
+		
+		
+		String string = JOptionPane.showInputDialog(frame , "Doğrulama Kodu Giriniz ..."); // değere atanabilir.a
+		System.out.println(string);
+		
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+
+	}
+
+}
+
+
+```
+![image](https://user-images.githubusercontent.com/39422788/222056405-3a759ac5-8cf6-456f-9b97-26af64f653fb.png)   ![image](https://user-images.githubusercontent.com/39422788/222056704-952e714e-5a5e-4042-9a07-2871f2829b02.png)
+
 
