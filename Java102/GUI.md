@@ -875,6 +875,8 @@ public class Test {
 
 ```
 ![2023-03-01](https://user-images.githubusercontent.com/39422788/222111099-f81f2f42-b390-40fb-87e8-70fe55299bdd.png)  ![image](https://user-images.githubusercontent.com/39422788/222111367-cd9d45b1-3732-43b7-9564-624725717ca7.png)
+
+- **JPopupMenu**
 ```JAVA
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
