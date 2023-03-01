@@ -875,5 +875,66 @@ public class Test {
 
 ```
 ![2023-03-01](https://user-images.githubusercontent.com/39422788/222111099-f81f2f42-b390-40fb-87e8-70fe55299bdd.png)  ![image](https://user-images.githubusercontent.com/39422788/222111367-cd9d45b1-3732-43b7-9564-624725717ca7.png)
+```JAVA
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+
+public class Test {
+
+	public static void main(String[] args) {
+		JPopupMenu popupMenu;
+		
+		JMenuItem cut;
+		JMenuItem copy;
+		JMenuItem  paste;
+		
+		JFrame frame = new JFrame("JPopupMenu kullanımı");
+		 popupMenu = new JPopupMenu();
+		 popupMenu.add(cut = new JMenuItem("Kesme") );
+		 popupMenu.add(copy = new JMenuItem("Kopyala"));
+		 popupMenu.add(paste = new JMenuItem("Yapıştır"));
+		
+		frame.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				popupMenu.show(frame , e.getX() , e.getY()); //Kordinatlar önemli
+				
+			}
+			
+			
+		});
+		
+		copy.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame, "Kopyalandı...");
+				
+			}
+		});
+		
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+		
+		
+		
+		
+		
+	}
+
+}
+
+```
+
+![2023-03-01 (2)](https://user-images.githubusercontent.com/39422788/222116325-9eb732f5-1fb3-4cd9-b38d-9b037161f714.png)   ![image](https://user-images.githubusercontent.com/39422788/222116510-80dfda8b-cf13-482d-9e52-16861b60cff9.png)
 
