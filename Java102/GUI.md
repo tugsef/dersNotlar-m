@@ -807,3 +807,73 @@ public class Test {
 ```
 
 ![image](https://user-images.githubusercontent.com/39422788/222060694-9c26caaa-c7ae-43f1-a4fd-285519b2f932.png)
+- **JMenu**
+
+![image](https://user-images.githubusercontent.com/39422788/222110467-8cf6ab80-5478-41e4-ba91-72ed12af624b.png)
+
+```JAVA
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		
+		JMenuBar menuBar;
+		JMenu menu;
+		JMenu suJMenu;
+		
+		JMenuItem menuItem1;
+		JMenuItem menuItem2;
+		JMenuItem menuItem3;
+		
+		JMenuItem subMenuItem1;
+		JMenuItem subMenuItem2;
+	
+		
+		
+		JFrame frame = new JFrame("JMenu Kullanımı");
+		
+		menuBar = new JMenuBar();
+		
+		menu = new JMenu("JMenu");
+		menu.add(menuItem1 =new JMenuItem("JMenuItem1"));
+		menu.add(menuItem2 = new JMenuItem("JMenuItem2"));
+		menu.add(menuItem3 = new JMenuItem("JMenuItem3"));
+		
+		suJMenu = new JMenu("subMenu");
+		suJMenu.add(subMenuItem1 = new JMenuItem( "subMenu1"));
+		suJMenu.add(subMenuItem2 = new JMenuItem("subMenu2"));
+		
+		subMenuItem2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame, "SubMenu2 açıldı..");
+				
+			}
+		});
+		
+		menu.add(suJMenu);
+		menuBar.add(menu);
+		frame.setJMenuBar(menuBar);
+		frame.setSize(400 , 400);
+		frame.setLayout(null);
+		frame.setVisible(true);
+
+	}
+
+}
+
+```
+![2023-03-01](https://user-images.githubusercontent.com/39422788/222111099-f81f2f42-b390-40fb-87e8-70fe55299bdd.png)  ![image](https://user-images.githubusercontent.com/39422788/222111367-cd9d45b1-3732-43b7-9564-624725717ca7.png)
+
+
