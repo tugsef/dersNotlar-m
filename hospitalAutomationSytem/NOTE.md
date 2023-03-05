@@ -11,3 +11,8 @@ hospital=# CREATE TYPE person AS ENUM ('patient' , 'doctor' , 'chiefPhysicion');
                     password VARCHAR(255) NOT NULL,
                     person person DEFAULT 'patient');
 ```
+
+- **ENUM var olan değerlere ek olrak değer ekleme users person tipinde 'physician' baş hekim olarak eklendi**
+```SQL
+Alter TYPE person ADD VALUE 'physician';
+```
