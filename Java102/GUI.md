@@ -638,6 +638,9 @@ public class Test {
 		frame.add(scrollpane);
 		frame.setSize(400 , 400);
 		frame.setVisible(true);
+		tb_userList.getTableHeader().setReorderingAllowed(false); // Tablo row başlıklarını sabitler
+		tb_userList.getTableHeader().setBackground(new Color(255 , 255 , 255)); //tablo row adlarının rengini değiştirir.
+		
 	}
 
 }
