@@ -1181,3 +1181,18 @@ public class flowLayout {
 
 ![image](https://user-images.githubusercontent.com/39422788/222144102-f672baf0-830f-41c1-8f19-eb791172cd9c.png)
 
+- **DefaulModel**
+dedautModel oluşturulurken bu kod seçilen columun düzenlenebilir olmasının önüne geçer...
+```JAVA
+	userListModel = new DefaultTableModel() {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+			if (column==0) 
+				return false;
+				return super.isCellEditable(row, column);
+			}
+			
+		};
+
+```
