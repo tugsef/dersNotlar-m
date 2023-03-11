@@ -640,12 +640,26 @@ public class Test {
 		frame.setVisible(true);
 		tb_userList.getTableHeader().setReorderingAllowed(false); // Tablo row başlıklarını sabitler
 		tb_userList.getTableHeader().setBackground(new Color(255 , 255 , 255)); //tablo row adlarının rengini değiştirir.
+		tb_userList.getColumnModel().getColumn(0).setMaxWidth(100); // Tabolda birinci colomn maximum değerini belirler
+		
+	//dedautModel oluşturulurken bu kod seçilen columun düzenlenebilir olmasının önüne geçer...
+	
+	userListModel = new DefaultTableModel() {
+			
+			@Override
+			public boolean isCellEditable(int row, int column) { 
+			if (column==0) 
+				return false;
+				return super.isCellEditable(row, column);
+			}
+			
+		};
 		
 	}
 
 }
 
-```
+
 
 ![image](https://user-images.githubusercontent.com/39422788/221967493-7cfdd1b0-dd06-40f7-add5-2aabda7019b4.png)
 
