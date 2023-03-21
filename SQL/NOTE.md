@@ -5,7 +5,7 @@
 > psql -U <kullanıcı_adı>
 ```
 
-- ***2.Kullanıcıya ait şifreyi girdikten sonra varsayılan veritabanı postgres'e bağlanıyor. ***
+- ***2.Kullanıcıya ait şifreyi girdikten sonra varsayılan veritabanı postgres'e bağlanıyor.***
 ```SQL
 > postgres=#
 ```
