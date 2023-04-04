@@ -47,3 +47,14 @@
 ```SQL
 \q
 ````
+
+## Var olan table tamamen kaldırmak
+```SQL
+DROP TABLE table_name;
+```
+
+## Var olan tablonun column u tamamen kaldırmak
+
+```SQL
+ALTER table_name DROP COLUMN column_name;
+```
