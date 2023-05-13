@@ -1,0 +1,312 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title></title></head><body><h1>Mongodb</h1>
+<ul>
+<li>SQL ve NoSQL arasýndaki farklar</li>
+<li>4 ana SQL olmayan türünincelenmesi</li>
+<li></li>
+</ul>
+<h2>What is NSQL</h2>
+<ul>
+<li>SQL yaklaþýmlarýnýn hiçbirine benzemez.</li>
+<li>Çeþitli veri modellerine izin verdiði için süper esnek kabul edilir. <em>Filexible</em></li>
+<li>SQL , yapýlandýrýlmýþ bir sorgu dilidir ve hibir SQL , veritabaný yönetimine yönelik bir yaklaþým deðldir.</li>
+</ul>
+<h2>Why use NoSql? (Neden sql kullanýyorsunuz…)</h2>
+<ul>
+<li>
+<p>Býr uygulama hazýrlamadan önce verileri düzenlemek için zaman harcarýz.</p>
+</li>
+<li>
+<p>Hiçbir SQL,uygulamalarýn ihtiyaç duyduðu bir bütüne daha uygun bir modeli saðlayamaz ve hatatýmýzý þekillendirir.</p>
+</li>
+<li>
+<p>Bilindiði üzere þirketler ürünlerini pazalamak veya ticari hedeflerini yerinr getirmek için daha fazla veriye ihtiyaç duyar.Bu durumda daha fazla veri yakalamak ve iþlemek gerekir.</p>
+</li>
+<li>
+<p>NoSQL</p>
+<p>Sql içermeyen bir veritabanýndan istediðimiz öxellikler</p>
+<ul>
+<li>
+<p><strong>Non-relational (Tablolar arasý iliþkilerin olmamasý):</strong> Ýliþkisel bir veri tabaný olmamasý</p>
+</li>
+<li>
+<p><strong>Distrubuted (Daðýtýlmýþ olmasý):</strong> Ýliþkisel bir veritabanýnýn aksine , büyük ölçeði yönetmek için tasarlanmýþ daðýtýlmýþ bir veritabaný.</p>
+</li>
+<li>
+<p><strong>Scalable(Ölçeklenebilir olmasý):</strong>  Yüksek performans , ölçeklenebilirlik , aktarým hýzý ve kullanýlabilirliði korurken veriler.</p>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>NON-RELATIONSL/NOSQL</th>
+<th>RELATIONAL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A database management approach</td>
+<td>uses SQL</td>
+</tr>
+<tr>
+<td>Not a query language</td>
+<td></td>
+</tr>
+<tr>
+<td>Non-relational</td>
+<td></td>
+</tr>
+<tr>
+<td>Distrubuted</td>
+<td></td>
+</tr>
+<tr>
+<td>Scalable</td>
+<td></td>
+</tr>
+<tr>
+<td>Uses SQL OR doesn’t use SQL</td>
+<td></td>
+</tr>
+<tr>
+<td>Not Only tables with fixed colums and rows</td>
+<td>Tables with fixed columns and rows</td>
+</tr>
+<tr>
+<td>Flexible Schema</td>
+<td>Fixed Schema</td>
+</tr>
+<tr>
+<td>Scales Out</td>
+<td>Scales Up</td>
+</tr>
+</tbody>
+</table>
+<h2>Setting Up</h2>
+<p><a href="ww.astra.datastax.com">Astre</a>  internet sitesine kayýt ve ilk database oluþturma</p>
+<h2>Tabuler Type</h2>
+<ul>
+<li>Tablo oluþturuldu</li>
+<li>Tabloya eleman eklendi</li>
+<li>Primary key nasýl kullanýlacaðýný gösterdi</li>
+</ul>
+<pre><code class="language-SQL">Connected as sefa.demirtas91@gmail.com.
+Connected to cndb at cassandra.ingress:9042.
+[cqlsh 6.8.0 | Cassandra 4.0.0.6816 | CQL spec 3.4.5 | Native protocol v4 | TLS]
+Use HELP for help.
+token@cqlsh&gt; describe keyspace;
+Not in any keyspace.
+
+(Note : IF NOT EXISTS: Eðer tablo mevcut deðilse oluþtur)
+//Database Git
+token@cqlsh&gt; use tabular;
+
+// database içeriðini göster
+token@cqlsh:tabular&gt; describe keyspace tabular;
+
+CREATE KEYSPACE tabular WITH replication = {'class': 'NetworkTopologyStrategy', 'us-east1': '3'}  AND durable_writes = true;
+
+CREATE TABLE tabular.books (
+    bookid uuid PRIMARY KEY,
+    added timestamp,
+    author text,
+    categories set&lt;text&gt;,
+    title text,
+    year int
+) WITH additional_write_policy = '99PERCENTILE'
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.UnifiedCompactionStrategy'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair = 'BLOCKING'
+    AND speculative_retry = '99PERCENTILE';
+    
+// 1.eleman ekleme
+token@cqlsh:tabular&gt; INSERT INTO books (bookid , author , title , year , categories , added)
+           ...  VALUES( uuid() , 'Boby Brown' , 'Dealing With Tables' , 1999 , {'programming' , 'computers'} , toTimeStamp(now()));
+
+//Tablonun içeriðini görünteleme
+token@cqlsh:tabular&gt; select * from books;
+
+ bookid                               | added                           | author     | categories                   | title               | year
+--------------------------------------+---------------------------------+------------+------------------------------+---------------------+------
+ 6b80547a-4a34-4fc1-a9d2-38da5d44dae1 | 2023-05-08 11:59:25.559000+0000 | Boby Brown | {'computers', 'programming'} | Dealing With Tables | 1999
+
+(1 rows)
+
+// 2. Eleman ekleme
+token@cqlsh:tabular&gt; INSERT INTO books( bookid , author , title , year , categories , added)
+           ... VALUES (uuid() , 'Andrea Agned' , 'the moon' , 2001 , {'space' , 'non-fiction'} , toTimeStamp(now()));
+
+// Tablonuniçeriðini görüntüleme
+token@cqlsh:tabular&gt; select * from books;
+
+ bookid                               | added                           | author       | categories                   | title               | year
+--------------------------------------+---------------------------------+--------------+------------------------------+---------------------+------
+ 28dd5163-0a1c-4836-aa3d-251045791708 | 2023-05-08 12:05:22.480000+0000 | Andrea Agned |     {'non-fiction', 'space'} |            the moon | 2001
+ 6b80547a-4a34-4fc1-a9d2-38da5d44dae1 | 2023-05-08 11:59:25.559000+0000 |   Boby Brown | {'computers', 'programming'} | Dealing With Tables | 1999
+
+
+
+// id kullanarak elemana ulaþma
+token@cqlsh:tabular&gt; SELECT * FROM books
+           ... WHERE bookid = 28dd5163-0a1c-4836-aa3d-251045791708;
+
+ bookid                               | added                           | author       | categories               | title    | year
+--------------------------------------+---------------------------------+--------------+--------------------------+----------+------
+ 28dd5163-0a1c-4836-aa3d-251045791708 | 2023-05-08 12:05:22.480000+0000 | Andrea Agned | {'non-fiction', 'space'} | the moon | 2001
+
+(1 rows)
+
+
+// Yeni bir tablo Primary key olsun country ye göre arama yaptýðýmda  name azalan , url  artan alabilirim.
+token@cqlsh:tabular&gt; CREATE TABLE IF NOT EXISTS restaurant_by_country(
+           ... country text,
+           ... name text,
+           ... cuisine text,
+           ... url text,
+           ... PRIMARY KEY ((country) , name , url))
+           ... WITH CLUSTERING ORDER BY (name DESC , url ASC);
+
+// restaurant_by_country tablosuna veri ekle
+token@cqlsh:tabular&gt; 
+token@cqlsh:tabular&gt; INSERT INTO restaurant_by_country(country , name , cuisine , url)
+           ...  VALUES('POLAND' , 'Wiejska Karczma' , 'traditional' , 'www.karczma');
+
+token@cqlsh:tabular&gt; INSERT INTO restaurant_by_country(country , name, cuisine , url)
+           ... VALUES('SINGAPORE' , 'The Shack', 'american' , 'www.shack.sg');
+token@cqlsh:tabular&gt; INSERT INTO restaurant_by_country(country , name, cuisine , url)
+           ... VALUES('UNITED KINGDOM' , 'The Red Rose' , 'pub' , 'www.redrode.co.uk');
+token@cqlsh:tabular&gt; SELECT * FROM restaurant_by_country;
+
+ country        | name            | url               | cuisine
+----------------+-----------------+-------------------+-------------
+      SINGAPORE |       The Shack |      www.shack.sg |    american
+         POLAND | Wiejska Karczma |       www.karczma | traditional
+ UNITED KINGDOM |    The Red Rose | www.redrode.co.uk |         pub
+
+(3 rows)
+
+// Tabloda ülkeye göre arama yapmak için
+
+token@cqlsh:tabular&gt; 
+token@cqlsh:tabular&gt; SELECT * FROM restaurant_by_country
+           ... WHERE country='SINGAPORE';
+
+ country   | name      | url          | cuisine
+-----------+-----------+--------------+----------
+ SINGAPORE | The Shack | www.shack.sg | american
+
+//Var olan databaseleri görüntüler
+token@cqlsh&gt; describe keyspaces;
+
+system_auth    data_endpoint_auth  system_traces        
+tabular        datastax_sla        system_virtual_schema
+system_schema  system  
+
+
+// tabular database deki tablolarý göster	
+token@cqlsh:tabular&gt; describe keyspace tabular;
+
+CREATE KEYSPACE tabular WITH replication = {'class': 'NetworkTopologyStrategy', 'us-east1': '3'}  AND durable_writes = true;
+
+CREATE TABLE tabular.books (
+    bookid uuid PRIMARY KEY,
+    added timestamp,
+    author text,
+    categories set&lt;text&gt;,
+    title text,
+    year int
+) WITH additional_write_policy = '99PERCENTILE'
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.UnifiedCompactionStrategy'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair = 'BLOCKING'
+    AND speculative_retry = '99PERCENTILE';
+
+CREATE TABLE tabular.restaurant_by_country (
+    country text,
+    name text,
+    url text,
+    cuisine text,
+    PRIMARY KEY (country, name, url)
+) WITH CLUSTERING ORDER BY (name DESC, url ASC)
+    AND additional_write_policy = '99PERCENTILE'
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.UnifiedCompactionStrategy'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair = 'BLOCKING'
+    AND speculative_retry = '99PERCENTILE';
+
+</code></pre>
+<h2>Document Types</h2>
+<ul>
+<li><a href="file:///D:/Patika.dev/MonoDb/Swagger%20UI.pdf">NOTE</a></li>
+<li><a href="https://7c9b7804-ea1f-4a43-80af-d86d4fda6c9e-us-east1.apps.astra.datastax.com/api/rest/swagger-ui/#/documents/getCollections">Swagger Test</a></li>
+</ul>
+<h2>Key-Value Type</h2>
+<p>Yeni bir ürün klemek istersem graphsql</p>
+<ul>
+<li>Doðru URL de olup olmadýðýmýzý kontrol etmemiz gerekiyor.</li>
+</ul>
+<p>Graphql kullanarak ekeldðiðmiz keyspace deðeri sorgulama</p>
+<pre><code>Connected as sefa.demirtas91@gmail.com.
+Connected to cndb at cassandra.ingress:9042.
+[cqlsh 6.8.0 | Cassandra 4.0.0.6816 | CQL spec 3.4.5 | Native protocol v4 | TLS]
+Use HELP for help.
+token@cqlsh&gt; use keyvalues
+   ... ;
+token@cqlsh:keyvalues&gt; describe table &quot;shop_inventory&quot;;
+
+CREATE TABLE keyvalues.shop_inventory (
+    key text PRIMARY KEY,
+    value text
+) WITH additional_write_policy = '99PERCENTILE'
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.UnifiedCompactionStrategy'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair = 'BLOCKING'
+    AND speculative_retry = '99PERCENTILE';
+</code></pre>
+<p><a href="file:///D:/Patika.dev/MonoDb/CreateTableKeyValueaGraphQL.pdf">CreateTable</a>
+<a href="file:///D:/Patika.dev/MonoDb/graphqlElemanG%C3%B6r%C3%BCnt%C3%BCleme.pdf">Graphql query</a>
+<a href="file:///D:/Patika.dev/MonoDb/insertGraphql.pdf">Graphql insert</a></p>
+<p>elemak eklerken dikkat edilmesi gerekenler</p>
+<ul>
+<li>doðru url de olduðumuzu kontrol etmemiz gerekir fotoðrafta olduðu gibi<!--  -->
+<img src="D:/Patika.dev/MonoDb/keyspace.PNG" alt="" /></li>
+</ul>
+</body></html>

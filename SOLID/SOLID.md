@@ -1,0 +1,9 @@
+# SOLID 
+
+- S — Single-responsibility principle
+- O — Open-closed principleb <br/>
+Yeni bir özellik eklendiğinde uygulamada hiçbir şeyi değiştirmemelisiniz.
+ 
+- L — Liskov substitution principle
+- I — Interface segregation principle
+- D — Dependency Inversion Principle

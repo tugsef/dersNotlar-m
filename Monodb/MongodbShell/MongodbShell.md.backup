@@ -85,3 +85,16 @@ use işlemi tablo içerisinde değilsek yapılır.
 ```
 
 - delete işlemi One olduğu için şarta uyan ilk dökümanı siler
+
+```SQL
+> pcat-test-db> db.photos.deleteOne({qty:{$lt:500}})
+```
+
+- tablo silme komutla yapmak riskli bir iştir doğrulama yapmadan tabloyu siler onun için silme işlemleri burdan yapılmamalı
+
+```SQL
+> pcat-test-db> db.dropDatabase()
+``
+
+
+[mongoose kaynak](https://mongoosejs.com/docs/api/query.html#Query.prototype.then())
