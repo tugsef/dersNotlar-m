@@ -203,8 +203,8 @@ veya isteğin tamamı gönderilmiş ise yok saylmaıgerektiğini belirtir
 
   <h4>CONNECT - TRACE - OPTIONS - HEAD</h4>
   <h4>SAFE Metotlar</h4>
-  GET – HEAD – OPTIONS : Sunucu “state” tarafında değişiklik oluşturmazlar. “Read-only” yapısındadırlar.
-  <h4>IDEMPOTENT Metotlar</h4>
+  GET – HEAD – OPTIONS : Sunucu “state” tarafında değişiklik oluşturmazlar. “Read-only(Yalnızca verileri okumak için)” yapısındadırlar.
+  <h4>IDEMPOTENT(Etkisiz) Metotlar</h4>
   GET – HEAD - OPTIONS – DELETE – PUT – TRACE : Tekrar durumunda sunucu state yapısında herhangi bir yan etki bırakmazlar. Safe metodlar, idempotent'tır.
   <h4>Endpoint (Sorgu Adresi)</h4>
 REST API kullanımında gönderilen istek ile verilen cevap için belirlenen buluşma noktasıdır.
