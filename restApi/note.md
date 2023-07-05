@@ -301,3 +301,50 @@ eXtensible Markup Language ifadesinin kısaltmasıdır. Veri depolamak ve iletme
 Genel olarak ağaç yapısına (tree structure) sahiptir. Veriler açılış ve kapanış etiketlerinin içerisinde bulunur. Dıştaki etiket, içtekinin "parent"ı, içteki etiket ise dıştakinin "child"ı şeklinde düşünülür.
 JSON formatının XML formatına göre en büyük avantajı, doğalında bir nesne modeline sahip olmasıdır. Bu özellik sayesinde birçok programlama dili JSON verileri daha kolay bir şekilde işleyebilir.
 </details>
+
+<details>
+  <summary>
+    <h3>Postman Kullanımı</h3>
+  </summary>
+  Postman bir API platformudur. API geliştirmek , test etmek ve/veya hazır bir API kullanımı için gerekli isteklerde bulunabileceğimiz bir uygulamadır. Insomnia REST Client, HTTPie gibi alternatifleri de bulunmasına karşın en çok kullanılan API aracıdır.
+
+  Postman kurulumu ve kullanımı için resmi dökümantasyonda bulunan aşağıdaki linki kullanabiliriz:
+
+  <ul><li>https://learning.postman.com/docs/getting-started/introduction/</li></ul>
+
+  <h3>Postman Kullanım Senaryoları:</h3>
+
+  <ul>
+    <li>Bir uygulama geliştirmek istiyoruz ve geliştirmeye başlamada kullanmak istediğimiz ücretli veya ücretsiz bir REST API tarafına ilgili istekleri göndererek gelen
+sunumları inceleyebiliriz.</li>
+    <li>Kendimizin bir REST API oluşturduğu bir senaryoyu düşünelim. Geliştirme aşamasında Postman yardımıyla gelen isteklere karşı uygulamamızın vereceği cevapları test edebiliriz.</li>
+    </ul>
+    <h3>İlgili İstek (Request)</h3>
+    <code>  GET: https://jsonplaceholder.typicode.com/users</code>
+    <h3>İlgili Cevap (Response)</h3>
+    <code>[
+    {
+      "id": 1,
+      "name": "Leanne Graham",
+      "username": "Bret",
+      "email": "Sincere@april.biz",
+      "address": {
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "zipcode": "92998-3874",
+      "geo": {
+      "lat": "-37.3159",
+      "lng": "81.1496"
+    }
+    },
+      "phone": "1-770-736-8031 x56442",
+      "website": "hildegard.org",
+      "company": {
+        "name": "Romaguera-Crona",
+        "catchPhrase": "Multi-layered client-server neural-net",
+        "bs": "harness real-time e-markets"
+    }
+  },
+]</code>
+</details>
