@@ -1,4 +1,4 @@
-#Docker Compose
+# Docker Compose
 
 - Bir .json , .xml ne ise yml de öyle düşünülebilir bir platformdan diğer pilatforma bilgi aktarılırken kullanılır data transferi için bir ortam sağlar(yml) 
 > dockerfile.yml
